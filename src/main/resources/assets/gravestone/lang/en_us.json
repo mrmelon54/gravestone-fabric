@@ -1,0 +1,6 @@
+{
+  "text.gravestone.obituary.page1": "Death Coordinates:\n\nX: %d\nY: %d\nZ: %d\n",
+  "text.gravestone.obituary.invalid.tag": "* Invalid obituary tag *",
+  "block.gravestone.grave": "Gravestone",
+  "item.gravestone.obituary": "Obituary"
+}

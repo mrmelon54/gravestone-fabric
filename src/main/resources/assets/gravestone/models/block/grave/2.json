@@ -1,0 +1,7 @@
+{
+	"parent": "gravestone:block/grave/grave",
+	"textures": {
+		"0": "gravestone:block/grave/2",
+		"particle": "gravestone:block/grave/2"
+	}
+}
