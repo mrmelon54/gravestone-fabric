@@ -5,6 +5,7 @@ import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
@@ -48,6 +49,16 @@ public class GraveBlock extends HorizontalFacingBlock implements BlockEntityProv
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         retrieveGraveInventory(world, pos, player);
+        if (player.isCreativeLevelTwoOp()) {
+            BlockEntity be = world.getBlockEntity(pos);
+            if (!(be instanceof GraveBlockEntity graveBlockEntity)) return;
+
+            world.removeBlock(pos, false);
+            world.removeBlockEntity(pos);
+
+            for (ItemStack itemStack : graveBlockEntity.getInventory())
+                world.spawnEntity(new ItemEntity(world, pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f, itemStack));
+        }
     }
 
     public void retrieveGraveInventory(World world, BlockPos pos, PlayerEntity player) {
